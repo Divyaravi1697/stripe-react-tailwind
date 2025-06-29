@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import FlowDiagram  from "./FlowDiagram";
+import FlowDiagram from "./FlowDiagram";
+import PaymenyImage from "../assets/images/m2.png";
+import BillingImage from "../assets/images/m1.png";
 
 
 const sections = [
@@ -18,7 +20,7 @@ const sections = [
     title: "Accept and optimise payments, globally",
     description:
       "Increase authorisation rates, offer local payment methods to boost conversion, and reduce fraud using AI.",
-    image: "/src/assets/images/m2.png",
+    image: PaymenyImage,
   },
   {
     id: "invoicing",
@@ -26,7 +28,7 @@ const sections = [
     title: "Capture recurring revenue",
     description:
       "Manage flat rate, usage-based, and hybrid pricing models, minimise churn, and automate finance operations.",
-    image: "/src/assets/images/m1.png",
+    image: BillingImage,
   },
 ];
 

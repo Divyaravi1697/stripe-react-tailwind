@@ -14,7 +14,7 @@ function App() {
           <Navbar />
           <HeroSection />
         </div>
-       
+
         <ScrollSync />
         <CustomerShowcase />
         <Footer />

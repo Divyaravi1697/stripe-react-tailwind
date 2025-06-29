@@ -1,5 +1,12 @@
-/** @jsxImportSource react */
-import { FC, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { FC } from "react";
+import bmwImage from "../assets/images/bmw.png";
+import amazon from "../assets/images/amazon.png";
+import amazonLogo from "../assets/images/amazon-logo.png";
+import maersk from "../assets/images/maersk.png";
+import maerskLogo from "../assets/images/maersk-logo.png";
+
+
 
 type Customer = {
   id: string;
@@ -21,7 +28,7 @@ const customers: Customer[] = [
     stats: ["Millions of BMW owners", "350+ US dealerships"],
     products: ["Payments", "Connect"],
     description: "Learn why BMW chose Stripe to power e-commerce and payments",
-    image: "/src/assets/images/bmw.png",
+    image: bmwImage,
     logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg",
     heading: "Enterprise reinvention",
     subheading: "Bring agility to your enterprise",
@@ -34,8 +41,8 @@ const customers: Customer[] = [
     products: ["Radar", "Billing"],
     description:
       "How Amazon scales billing across global subscriptions with Stripe",
-    image: "/src/assets/images/amazon.png",
-    logo: "/src/assets/images/amazon-logo.png",
+    image: amazon,
+    logo: amazonLogo,
     heading: "Enterprise reinvention",
     subheading: "Bring agility to your enterprise",
     objectFit: "object-contain",
@@ -47,8 +54,8 @@ const customers: Customer[] = [
     products: ["Payments", "Identity"],
     description:
       "Twilio integrates Stripe to secure identity and messaging payments",
-    image: "/src/assets/images/maersk.png",
-    logo: "/src/assets/images/maersk-logo.png",
+    image: maersk,
+    logo: maerskLogo,
     heading: "Customer engagement",
     subheading: "Scale communications securely",
     objectFit: "object-fill",

@@ -1,10 +1,21 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   ChevronDownIcon,
   ChevronUpIcon,
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
+import paymentsvg from "../assets/images/payment.svg";
+import terminalsvg from "../assets/images/terminal.svg";
+import connectsvg from "../assets/images/connect.svg";
+import billingsvg from "../assets/images/billing.svg";
+import payoutsvg from "../assets/images/payouts.svg";
+import issusingsvg from "../assets/images/issuing.svg";
+import radarsvg from "../assets/images/radar.svg";
+import sigmasvg from "../assets/images/sigma.svg";
+import atlassvg from "../assets/images/atlas.svg";
+import rightArrow from "../assets/images/right-arrow.svg";
+
 
 const menuItems = {
   Products: {
@@ -15,22 +26,22 @@ const menuItems = {
         items: [
           {
             name: "Payments",
-            iconSrc: "/src/assets/images/payment.svg",
+            iconSrc: paymentsvg,
             description: "Online payments",
           },
           {
             name: "Terminal",
-            iconSrc: "/src/assets/images/terminal.svg",
+            iconSrc: terminalsvg,
             description: "In-person payments",
           },
           {
             name: "Connect",
-            iconSrc: "/src/assets/images/connect.svg",
+            iconSrc: connectsvg,
             description: "Payments for platforms",
           },
           {
             name: "Billing",
-            iconSrc: "/src/assets/images/billing.svg",
+            iconSrc: billingsvg,
             description: "Subscriptions & invoicing",
           },
         ],
@@ -40,12 +51,12 @@ const menuItems = {
         items: [
           {
             name: "Payouts",
-            iconSrc: "/src/assets/images/payouts.svg",
+            iconSrc: payoutsvg,
             description: "Programmatic payouts",
           },
           {
             name: "Issuing",
-            iconSrc: "/src/assets/images/issuing.svg",
+            iconSrc: issusingsvg,
             description: "Card creation",
           },
         ],
@@ -55,17 +66,13 @@ const menuItems = {
         items: [
           {
             name: "Radar",
-            iconSrc: "/src/assets/images/radar.svg",
+            iconSrc: radarsvg,
             description: "Fraud & risk management",
           },
-          {
-            name: "Sigma",
-            iconSrc: "/src/assets/images/sigma.svg",
-            description: "Custom reports",
-          },
+          { name: "Sigma", iconSrc: sigmasvg, description: "Custom reports" },
           {
             name: "Atlas",
-            iconSrc: "/src/assets/images/atlas.svg",
+            iconSrc: atlassvg,
             description: "Start-up incorporation",
           },
         ],
@@ -75,23 +82,21 @@ const menuItems = {
   Developers: {
     title: "PRODUCTS",
     sections: [
-     
       {
         title: "PAYOUTS",
         items: [
           {
             name: "Payouts",
-            iconSrc: "/src/assets/images/payouts.svg",
+            iconSrc: paymentsvg,
             description: "Programmatic payouts",
           },
           {
             name: "Issuing",
-            iconSrc: "/src/assets/images/issuing.svg",
+            iconSrc: issusingsvg,
             description: "Card creation",
           },
         ],
       },
-    
     ],
   },
   Resources: {
@@ -102,22 +107,22 @@ const menuItems = {
         items: [
           {
             name: "Payments",
-            iconSrc: "/src/assets/images/payment.svg",
+            iconSrc: paymentsvg,
             description: "Online payments",
           },
           {
             name: "Terminal",
-            iconSrc: "/src/assets/images/terminal.svg",
+            iconSrc: terminalsvg,
             description: "In-person payments",
           },
           {
             name: "Connect",
-            iconSrc: "/src/assets/images/connect.svg",
+            iconSrc: connectsvg,
             description: "Payments for platforms",
           },
           {
             name: "Billing",
-            iconSrc: "/src/assets/images/billing.svg",
+            iconSrc: billingsvg,
             description: "Subscriptions & invoicing",
           },
         ],
@@ -127,12 +132,12 @@ const menuItems = {
         items: [
           {
             name: "Payouts",
-            iconSrc: "/src/assets/images/payouts.svg",
+            iconSrc: payoutsvg,
             description: "Programmatic payouts",
           },
           {
             name: "Issuing",
-            iconSrc: "/src/assets/images/issuing.svg",
+            iconSrc: issusingsvg,
             description: "Card creation",
           },
         ],
@@ -142,17 +147,13 @@ const menuItems = {
         items: [
           {
             name: "Radar",
-            iconSrc: "/src/assets/images/radar.svg",
+            iconSrc: radarsvg,
             description: "Fraud & risk management",
           },
-          {
-            name: "Sigma",
-            iconSrc: "/src/assets/images/sigma.svg",
-            description: "Custom reports",
-          },
+          { name: "Sigma", iconSrc: sigmasvg, description: "Custom reports" },
           {
             name: "Atlas",
-            iconSrc: "/src/assets/images/atlas.svg",
+            iconSrc: atlassvg,
             description: "Start-up incorporation",
           },
         ],
@@ -184,7 +185,6 @@ export default function Navbar() {
       if (!target.dataset.expand) return;
 
       navsVisited++;
-
       if (!expandMenu || !indicator) return;
 
       if (navsVisited === 1) {
@@ -216,40 +216,31 @@ export default function Navbar() {
         `#${target.dataset.expand}`
       ) as HTMLElement;
       if (!targetMenu) return;
-      const { width: targetWidth, height: targetHeight } =
-        targetMenu.getBoundingClientRect();
+      const { width, height } = targetMenu.getBoundingClientRect();
 
-      expandMenu.style.width = `${targetWidth}px`;
-      expandMenu.style.height = `${targetHeight}px`;
+      expandMenu.style.width = `${width}px`;
+      expandMenu.style.height = `${height}px`;
 
       const prevMenu = targetMenu.previousElementSibling as HTMLElement;
       targetMenu.classList.remove("prev");
-
-      if (prevMenu) {
-        prevMenu.classList.add("prev");
-      }
+      if (prevMenu) prevMenu.classList.add("prev");
 
       menus.forEach((menu) => {
-        if (menu.id === targetMenu.id) {
-          menu.classList.add("active");
-        } else {
-          menu.classList.remove("active");
-        }
+        menu.classList.toggle("active", menu.id === targetMenu.id);
       });
 
       expandMenu.classList.add("expand");
     };
 
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (isMouseOnMenu || e.y > 50) return;
-      forceInitialState();
-    };
-
     const forceInitialState = () => {
+      const expandMenu = expandMenuRef.current;
+      const indicator = indicatorRef.current;
       if (!expandMenu || !indicator || !navLinksRef.current) return;
       expandMenu.classList.remove("expand", "active");
       if (currentNav) currentNav.classList.remove("hover");
-      menus.forEach((menu) => menu.removeAttribute("class"));
+      expandMenu
+        .querySelectorAll(".menu__container > *")
+        .forEach((menu) => menu.removeAttribute("class"));
       indicator.style.opacity = "0";
       currentNav = null;
       navsVisited = 0;
@@ -260,9 +251,7 @@ export default function Navbar() {
     });
 
     expandMenu?.addEventListener("mouseenter", () => {
-      if (expandMenu.style.opacity === "1") {
-        isMouseOnMenu = true;
-      }
+      if (expandMenu.style.opacity === "1") isMouseOnMenu = true;
     });
 
     expandMenu?.addEventListener("mouseleave", (e) => {
@@ -272,10 +261,6 @@ export default function Navbar() {
       }
     });
 
-    document
-      .querySelector(".nav__links")
-      ?.addEventListener("mouseleave", handleMouseLeave);
-
     return () => {
       navLinks.forEach((navLink) => {
         navLink.removeEventListener("mouseenter", handleMouseEnter);
@@ -283,13 +268,14 @@ export default function Navbar() {
     };
   }, []);
 
+  const toggleSubmenu = (item: string) => {
+    setOpenSubmenu(openSubmenu === item ? null : item);
+  };
+
   return (
     <nav className="navbar">
       <div className="max-w-7xl mx-auto px-6 md:px-20 py-4 flex justify-between items-center">
-        {/* Logo */}
         <div className="font-bold text-2xl text-white">stripe</div>
-
-        {/* Desktop nav */}
         <div className="hidden lg:flex items-center">
           <ul className="nav__links">
             {Object.entries(menuItems).map(([item, subItems]) => (
@@ -299,16 +285,12 @@ export default function Navbar() {
                 className="nav--link group flex items-center gap-1"
               >
                 <span className="font-medium">{item}</span>
-                {/* Show arrow only if submenu exists */}
-                {subItems && (
-                  <ChevronDownIcon className="w-4 h-4 text-white transform transition-transform duration-200 opacity-100 group-hover:rotate-180" />
-                )}
+                <ChevronDownIcon className="w-4 h-4 text-white transform transition-transform duration-200 opacity-100 group-hover:rotate-180" />
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Right buttons */}
         <div className="hidden lg:flex items-center space-x-4">
           <a href="#" className="text-white hover:no-underline">
             <div className="group flex items-center gap-1">
@@ -332,7 +314,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile menu toggle */}
         <div className="lg:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -347,75 +328,49 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="lg:hidden bg-white text-gray-800 px-6 py-6 space-y-6">
           {Object.entries(menuItems).map(([item, subItems]) => (
             <div key={item}>
               <button
-                onClick={() => subItems && toggleSubmenu(item)}
+                onClick={() => toggleSubmenu(item)}
                 className="flex items-center justify-between w-full font-semibold py-2 hover:bg-gray-50 px-2 rounded"
               >
                 {item}
-                {subItems &&
-                  (openSubmenu === item ? (
-                    <ChevronUpIcon className="w-5 h-5" />
-                  ) : (
-                    <ChevronDownIcon className="w-5 h-5" />
-                  ))}
+                {openSubmenu === item ? (
+                  <ChevronUpIcon className="w-5 h-5" />
+                ) : (
+                  <ChevronDownIcon className="w-5 h-5" />
+                )}
               </button>
 
-              {subItems && openSubmenu === item && (
+              {openSubmenu === item && (
                 <div className="mt-2 space-y-4 pl-4 text-sm shadow-lg border-gray-100">
-                  {"sections" in subItems ? (
-                    subItems.sections.map((section) => (
-                      <div key={section.title} className="mb-4">
-                        <h4 className="text-xs uppercase text-gray-500 mb-1">
-                          {section.title}
-                        </h4>
-                        <ul className="space-y-2">
-                          {section.items.map((item) => (
-                            <li
-                              key={item.name}
-                              className="flex items-center gap-3 py-1 hover:bg-gray-50 px-2 rounded"
-                            >
-                              <img
-                                src={item.iconSrc}
-                                alt={item.name}
-                                className="w-6 h-6"
-                              />
-                              <span className="flex flex-col flex-1">
-                                <span className="flex justify-between items-center">
-                                  {item.name}
-                                  <img
-                                    className="right--arrow w-4 h-4"
-                                    src="/src/assets/images/right-arrow.svg"
-                                    alt=""
-                                  />
-                                </span>
-                                <span className="text-xs text-gray-500">
-                                  {item.description}
-                                </span>
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))
-                  ) : (
-                    <>
+                  {subItems.sections.map((section) => (
+                    <div key={section.title} className="mb-4">
                       <h4 className="text-xs uppercase text-gray-500 mb-1">
-                        {subItems.title}
+                        {section.title}
                       </h4>
                       <ul className="space-y-2">
-                        {subItems.items.map((item) => (
+                        {section.items.map((item) => (
                           <li
                             key={item.name}
-                            className="flex items-center gap-2 py-1 hover:bg-gray-50 px-2 rounded"
+                            className="flex items-center gap-3 py-1 hover:bg-gray-50 px-2 rounded"
                           >
-                            <span className="text-lg">{item.icon}</span>
-                            <span className="flex flex-col">
-                              <span>{item.name}</span>
+                            <img
+                              src={item.iconSrc}
+                              alt={item.name}
+                              className="w-6 h-6"
+                            />
+                            <span className="flex flex-col flex-1">
+                              <span className="flex justify-between items-center">
+                                {item.name}
+                                <img
+                                  className="right--arrow w-4 h-4"
+                                  src={rightArrow}
+                                  alt=""
+                                />
+                              </span>
                               <span className="text-xs text-gray-500">
                                 {item.description}
                               </span>
@@ -423,8 +378,8 @@ export default function Navbar() {
                           </li>
                         ))}
                       </ul>
-                    </>
-                  )}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -437,87 +392,58 @@ export default function Navbar() {
             >
               Sign in
             </a>
-            <button className="w-full bg-indigo-600 text-white rounded-full py-1  hover:bg-indigo-700 transition">
+            <button className="w-full bg-indigo-600 text-white rounded-full py-1 hover:bg-indigo-700 transition">
               Contact sales
             </button>
           </div>
         </div>
       )}
 
-      {/* Desktop expand menu */}
       <div className="header__expandMenu block" ref={expandMenuRef}>
         <div className="menu__container">
-          {Object.entries(menuItems).map(([item, subItems]) => {
-            if (!subItems) return null;
-            return (
-              <div key={item} id={item.toLowerCase()}>
-                <div className="sub__menu">
-                  {"sections" in subItems ? (
-                    subItems.sections.map((section) => (
-                      <div key={section.title}>
-                        <h3 className="title text-xs uppercase text-gray-500 mb-2">
-                          {section.title}
-                        </h3>
-                        <ul className="subMenu__items ">
-                          {section.items.map((item) => (
-                            <li key={item.name} className="subMenu--item ">
-                              <img
-                                src={item.iconSrc}
-                                alt={item.name}
-                                className="w-6 h-6"
-                              />
-                              <span className="label__container">
-                                <div className="label flex justify-between items-center">
-                                  <span className="font-medium">
-                                    {item.name}
-                                  </span>
-                                  <img
-                                    className="right--arrow w-4 h-4"
-                                    src="/src/assets/images/right-arrow.svg"
-                                    alt=""
-                                  />
-                                </div>
-                                <div className="label--desc text-xs text-gray-500">
-                                  {item.description}
-                                </div>
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))
-                  ) : (
-                    <>
-                      <h3 className="title">{subItems.title}</h3>
-                      <ul className="subMenu__items">
-                        {subItems.items.map((subItem) => (
-                          <li key={subItem.name} className="subMenu--item">
-                            <span className="text-xl">{subItem.icon}</span>
-                            <span className="flex flex-col">
+          {Object.entries(menuItems).map(([item, subItems]) => (
+            <div key={item} id={item.toLowerCase()}>
+              <div className="sub__menu">
+                {subItems.sections.map((section) => (
+                  <div key={section.title}>
+                    <h3 className="title text-xs uppercase text-gray-500 mb-2">
+                      {section.title}
+                    </h3>
+                    <ul className="subMenu__items">
+                      {section.items.map((subItem) => (
+                        <li key={subItem.name} className="subMenu--item">
+                          <img
+                            src={subItem.iconSrc}
+                            alt={subItem.name}
+                            className="w-6 h-6"
+                          />
+                          <span className="label__container">
+                            <div className="label flex justify-between items-center">
                               <span className="font-medium">
                                 {subItem.name}
                               </span>
-                              <span className="text-xs text-gray-500">
-                                {subItem.description}
-                              </span>
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </div>
+                              <img
+                                className="right--arrow w-4 h-4"
+                                src={rightArrow}
+                                alt=""
+                              />
+                            </div>
+                            <div className="label--desc text-xs text-gray-500">
+                              {subItem.description}
+                            </div>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
-      {/* Indicator */}
+
       <div ref={indicatorRef} className="tip" />
     </nav>
   );
-
-  function toggleSubmenu(item: string) {
-    setOpenSubmenu(openSubmenu === item ? null : item);
-  }
 }
