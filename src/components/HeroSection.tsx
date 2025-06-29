@@ -1,4 +1,3 @@
-import React from "react";
 import stripeUi from "../assets/images/stripe-ui.png";
 
 

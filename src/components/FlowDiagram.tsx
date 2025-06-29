@@ -137,7 +137,7 @@ const FlowDiagram: React.FC = () => {
     lines: [false, false, false, false],
   });
 
-  const animationRef = useRef<number>();
+  const animationRef = useRef(0);
 
   useEffect(() => {
     const startAnimation = () => {

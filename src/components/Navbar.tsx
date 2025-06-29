@@ -170,7 +170,7 @@ export default function Navbar() {
   const navLinksRef = useRef<NodeListOf<HTMLLIElement> | null>(null);
   let currentNav: HTMLLIElement | null = null;
   let navsVisited = 0;
-  let isMouseOnMenu = false;
+  const isMouseOnMenu = useRef(false);
 
   useEffect(() => {
     const expandMenu = expandMenuRef.current;
@@ -251,12 +251,12 @@ export default function Navbar() {
     });
 
     expandMenu?.addEventListener("mouseenter", () => {
-      if (expandMenu.style.opacity === "1") isMouseOnMenu = true;
+      if (expandMenu.style.opacity === "1") isMouseOnMenu.current = true;
     });
 
     expandMenu?.addEventListener("mouseleave", (e) => {
       if (e.y > 70) {
-        isMouseOnMenu = false;
+        isMouseOnMenu.current = false;
         forceInitialState();
       }
     });
@@ -278,7 +278,7 @@ export default function Navbar() {
         <div className="font-bold text-2xl text-white">stripe</div>
         <div className="hidden lg:flex items-center">
           <ul className="nav__links">
-            {Object.entries(menuItems).map(([item, subItems]) => (
+            {Object.entries(menuItems).map(([item]) => (
               <li
                 key={item}
                 data-expand={item.toLowerCase()}
