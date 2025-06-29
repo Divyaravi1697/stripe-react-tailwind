@@ -1,4 +1,4 @@
-![Project demo](/new/src/assets/images/strip-home.png)
+![Project demo](./src/assets/images/strip-home.png)
 
 ## :star: Technologies
 
