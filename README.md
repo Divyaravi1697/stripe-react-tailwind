@@ -8,4 +8,5 @@ The project was developed with the following technologies:
 - Tailwind CSS
 - TypeScript
 
+Live Demo: https://stripe-react-tailwind.vercel.app/  
 #### Leave a star ⭐, Cheers!
